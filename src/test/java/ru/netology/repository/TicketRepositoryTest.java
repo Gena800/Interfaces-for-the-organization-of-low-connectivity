@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TicketRepositoryTest {
     TicketRepository repository = new TicketRepository();
     Ticket one = new Ticket(1, 600, "LED", "FRU", 500);
-    Ticket two = new Ticket(2, 500, "OGZ", "FRU", 500);
+    Ticket two = new Ticket(2, 600, "OGZ", "FRU", 500);
     Ticket three = new Ticket(3, 300, "OGZ", "FRU", 500);
     Ticket four = new Ticket(4, 100, "LED", "OGZ", 500);
     Ticket five = new Ticket(5, 400, "LED", "FRU", 500);
@@ -30,7 +30,7 @@ class TicketRepositoryTest {
     @Test
     public void testSorting() {
 
-        Ticket[] expected = {four, three, five, two, one};
+        Ticket[] expected = {four, three, five, one, two};
         Ticket[] actual = repository.findAll();
         Assertions.assertArrayEquals(expected, actual);
 
@@ -44,11 +44,7 @@ class TicketRepositoryTest {
     }
 
 
-    @Test
-    public void shouldFindById() {
-        Ticket[] expected = {four};
-        Ticket actual = repository.findById(4);
-    }
+
 
     @Test
 
@@ -57,6 +53,14 @@ class TicketRepositoryTest {
         Assertions.assertThrows(AlreadyExistsException.class, () -> {
             repository.save(six);
         });
+    }
+
+    @Test
+    public void removeById() {
+        repository.removeById(5);
+        Ticket[] expected = {four, three, one, two};
+        Ticket[] actual = repository.findAll();
+        Assertions.assertArrayEquals(expected, actual);
     }
 
 }
