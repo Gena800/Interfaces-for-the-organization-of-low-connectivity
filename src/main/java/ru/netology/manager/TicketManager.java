@@ -18,8 +18,8 @@ public class TicketManager {
     public Ticket[] findAll(String from, String to) {
         Ticket[] tickets = new Ticket[0];
         for (Ticket ticket : repo.findAll()) {
-            if (from == ticket.getFromAirport()) {
-                if (to == ticket.getToAirport()) {
+            if (from.equals(ticket.getFromAirport())) {
+                if (to.equals(ticket.getToAirport())) {
                     Ticket[] tmp = new Ticket[tickets.length +1];
                     for (int i = 0; i < tickets.length; i++) {
                         tmp[i] = tickets[i];
