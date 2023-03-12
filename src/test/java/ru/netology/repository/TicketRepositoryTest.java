@@ -44,11 +44,6 @@ class TicketRepositoryTest {
     }
 
 
-    @Test
-    public void shouldFindById() {
-        Ticket[] expected = {four};
-        Ticket actual = repository.findById(4);
-    }
 
     @Test
 
